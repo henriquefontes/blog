@@ -3,13 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= frontMatter.title %> | Henrique Fontes</title>
+    <title><%- frontMatter.title %> | Henrique Fontes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-light.css"
+      integrity="sha512-CxC9MO8FBaaq8vl9yaXHjgWd7uXqx3pWMSBP3daioTTI0gpXijlypuMV67NoE1bPYMzj7ZSNNS0o+jFFdFodgA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/github.css"
+    />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   </head>
   <body>
-    <h1><%= frontMatter.title %></h1>
-    <p>Date: <%= frontMatter.date %></p>
-    <p>Tags: <%= frontMatter.tags.join(', ') %></p>
-    <%- content %>
+    <header>
+      <div class="wrapper">
+        <a href="/">henriquefontes.dev</a>
+        <nav>
+          <a href="https://github.com/henriquefontes" target="_blank">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/henriquefontes" target="_blank">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+        </nav>
+      </div>
+    </header>
+    <main class="wrapper post-container">
+      <div class="banner-wrapper">
+        <img
+          src="https://new-uploads-akitaonrails.s3.us-east-2.amazonaws.com/20250914123715_20250914_122919.jpg"
+          alt=""
+        />
+      </div>
+      <span class="post-date"
+        ><i class="fa-solid fa-calendar"></i><%- frontMatter.date %></span
+      >
+      <h1><%- frontMatter.title %></h1>
+      <div class="markdown-body" data-theme="light"><%- content %></div>
+    </main>
+
+    <script>
+      hljs.highlightAll();
+    </script>
   </body>
 </html>
