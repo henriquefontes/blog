@@ -11,8 +11,8 @@ export default function extractMarkdownFrontMatter(markdownContent) {
     const lines = frontMatterContent.split("\n");
 
     lines.forEach((line) => {
-      const key = line.split(":")[0].trim();
-      let value = line.split(":")[1].trim();
+      const key = line.substring(0, line.indexOf(":")).trim();
+      let value = line.substring(line.indexOf(":") + 1, line.length).trim();
 
       if (value.startsWith("[") && value.endsWith("]")) {
         value = value
@@ -20,6 +20,8 @@ export default function extractMarkdownFrontMatter(markdownContent) {
           .split(",")
           .map((item) => item.trim());
       }
+
+      if (key === "date") value = value ? new Date(value) : null;
 
       frontMatter[key] = value;
     });
