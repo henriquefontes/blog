@@ -31,12 +31,11 @@
   <body>
     <%- include("../partials/header") %>
     <main class="wrapper post-container">
+      <% if (frontMatter.banner) { %>
       <div class="banner-wrapper">
-        <img
-          src="https://new-uploads-akitaonrails.s3.us-east-2.amazonaws.com/20250914123715_20250914_122919.jpg"
-          alt=""
-        />
+        <img src="<%- frontMatter.banner %>" alt="" />
       </div>
+      <% } %>
       <span class="post-date"
         ><i class="fa-solid fa-calendar"></i><%- frontMatter.date %></span
       >
