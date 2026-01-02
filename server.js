@@ -52,7 +52,7 @@ app.get("/*path", async (req, res) => {
   } catch (error) {
     console.log(error);
 
-    res.status(404).send("Post not found");
+    res.status(404).render("error");
   }
 });
 
