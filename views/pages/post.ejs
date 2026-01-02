@@ -41,10 +41,24 @@
       >
       <h1><%- frontMatter.title %></h1>
       <div class="markdown-body" data-theme="light"><%- content %></div>
+      <hr />
+      <div id="disqus_thread"></div>
     </main>
 
     <script>
       hljs.highlightAll();
+    </script>
+    <script>
+      var disqus_config = function () {
+        this.page.url = "henriquefontes.dev";
+        this.page.identifier = <%- identifier %>;
+      };
+      (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://henriquefontes.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
     </script>
   </body>
 </html>

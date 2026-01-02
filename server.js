@@ -29,7 +29,11 @@ app.get("/*path", async (req, res) => {
 
     frontMatter.date = formatDate(frontMatter.date);
 
-    res.render("post", { frontMatter, content: htmlContent });
+    res.render("post", {
+      frontMatter,
+      content: htmlContent,
+      identifier: markdownPath,
+    });
   } catch (error) {
     console.log(error);
 

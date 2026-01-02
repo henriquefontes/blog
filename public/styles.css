@@ -104,3 +104,7 @@ main.post-container {
   flex-direction: column;
   row-gap: 10px;
 }
+
+.markdown-body {
+  margin-bottom: 15px;
+}
