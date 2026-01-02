@@ -51,13 +51,14 @@
     <script>
       var disqus_config = function () {
         this.page.url = "henriquefontes.dev";
-        this.page.identifier = <%- identifier %>;
+        this.page.identifier = "<%- identifier %>";
       };
-      (function() {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://henriquefontes.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
+      (function () {
+        var d = document,
+          s = d.createElement("script");
+        s.src = "https://henriquefontes.disqus.com/embed.js";
+        s.setAttribute("data-timestamp", +new Date());
+        (d.head || d.body).appendChild(s);
       })();
     </script>
   </body>
