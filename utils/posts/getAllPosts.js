@@ -3,8 +3,9 @@ import path from "path";
 import extractMarkdownFrontMatter from "../markdown/extractMarkdownFrontMatter.js";
 
 export default async function getAllPosts() {
-  const POSTS_DIR = "posts";
-  const postsFiles = await fs.readdir("./" + POSTS_DIR, {
+  const POSTS_FOLDER = "/posts";
+  const POSTS_DIR = process.cwd() + POSTS_FOLDER;
+  const postsFiles = await fs.readdir(POSTS_DIR, {
     recursive: true,
     withFileTypes: true,
   });
@@ -14,17 +15,15 @@ export default async function getAllPosts() {
       .filter((file) => file.isFile() && file.name.endsWith(".md"))
       .map(async (file) => {
         const fileDir = path.join(file.parentPath, file.name);
-        const fileContent = await fs.readFile(
-          path.join(file.parentPath, file.name),
-          "utf-8"
-        );
+        const fileContent = await fs.readFile(fileDir, "utf-8");
         const frontMatter = extractMarkdownFrontMatter(fileContent);
 
         return {
           ...frontMatter,
           path: fileDir
-            .replace(POSTS_DIR, "")
             .replaceAll("\\", "/")
+            .replace(POSTS_DIR.replaceAll("\\", "/"), "")
+            .replace(POSTS_FOLDER, "")
             .replace(".md", ""),
         };
       })
