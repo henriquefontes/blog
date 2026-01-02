@@ -41,7 +41,7 @@
       >
       <h1><%- frontMatter.title %></h1>
       <div class="markdown-body" data-theme="light"><%- content %></div>
-      <hr />
+      <hr style="margin-bottom: 30px" />
       <div id="disqus_thread"></div>
     </main>
 
@@ -50,7 +50,7 @@
     </script>
     <script>
       var disqus_config = function () {
-        this.page.url = "henriquefontes.dev";
+        this.page.url = "https://henriquefontes.dev";
         this.page.identifier = "<%- identifier %>";
       };
       (function () {
