@@ -80,11 +80,24 @@ main.post-container {
     }
   }
 
+  & .post-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+    & .post-tags {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+  }
+
   & .post-date {
     display: block;
     color: #757575;
     font-size: 14px;
-    margin-bottom: 30px;
     display: flex;
     gap: 5px;
     align-items: center;
@@ -107,4 +120,40 @@ main.post-container {
 
 .markdown-body {
   margin-bottom: 30px;
+}
+
+:root {
+  --badge-bg-color: 34, 34, 34;
+  --badge-text-color: white;
+}
+.javascript {
+  --badge-bg-color: 240, 219, 79;
+  --badge-text-color: #323330;
+}
+.node-js {
+  --badge-bg-color: 108, 194, 74;
+}
+.express {
+  --badge-bg-color: 68, 136, 62;
+}
+.ejs {
+  --badge-bg-color: 180, 202, 101;
+  --badge-text-color: #a91f50;
+}
+
+.badge {
+  text-decoration: none;
+  color: var(--badge-text-color);
+  background-color: rgba(var(--badge-bg-color), 1);
+  padding: 3px 6px;
+  border-radius: 7px;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+
+  &:hover {
+    background-color: rgba(var(--badge-bg-color), 0.8);
+  }
 }

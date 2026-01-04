@@ -2,7 +2,7 @@
 title: Markdown Sample
 date: 2026-01-01T12:00:00Z
 banner: https://www.iamthecode.org/wp-content/uploads/2021/03/florian-olivo-4hbJ-eymZ1o-unsplash-scaled-e1616631053918.jpg
-tags: [nodejs, express, ejs, markdown]
+tags: [javascript, node-js, express, ejs, markdown]
 ---
 
 # h1 Heading 8-)

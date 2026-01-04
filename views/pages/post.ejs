@@ -36,9 +36,15 @@
         <img src="<%- frontMatter.banner %>" alt="" />
       </div>
       <% } %>
-      <span class="post-date"
-        ><i class="fa-solid fa-calendar"></i><%- frontMatter.date %></span
-      >
+      <div class="post-info">
+        <span class="post-date"
+          ><i class="fa-solid fa-calendar"></i><%- frontMatter.date %></span
+        >
+        <div class="post-tags">
+          <% for(const tag of (frontMatter.tags || [])) { %>
+          <a class="badge <%-tag%>" href="tags/<%-tag%>"></i><%-tag%> <% } %></a>
+        </div>
+      </div>
       <h1><%- frontMatter.title %></h1>
       <div class="markdown-body" data-theme="light"><%- content %></div>
       <hr style="margin-bottom: 30px" />
