@@ -9,11 +9,29 @@ import formatDate from "./utils/posts/formatDate.js";
 
 const posts = (await getAllPosts()).sort((a, b) => b.date - a.date);
 const postsByTag = posts.reduce((acc, post) => {
-  for (const tag of post.tags) {
-    const posts = acc[tag] || (acc[tag] = []);
+  const postDate = post.date;
+  const postMonth = postDate?.getMonth().toString().padStart(2, "0");
+  const postYear = postDate?.getFullYear();
+  const monthLabel = postMonth + "-" + postYear;
 
-    posts.push(post);
+  for (const tag of post.tags) {
+    const postsByTag = acc[tag] || (acc[tag] = []);
+    const postsByMonth =
+      postsByTag[monthLabel] || (postsByTag[monthLabel] = []);
+
+    postsByMonth.push(post);
   }
+
+  return acc;
+}, {});
+const postsByMonth = posts.reduce((acc, post) => {
+  const postDate = post.date;
+  const postMonth = postDate?.getMonth().toString().padStart(2, "0");
+  const postYear = postDate?.getFullYear();
+  const monthLabel = postMonth + "-" + postYear;
+  const posts = acc[monthLabel] || (acc[monthLabel] = []);
+
+  posts.push(post);
   return acc;
 }, {});
 
@@ -29,7 +47,7 @@ app.get("/tags/:tag", (req, res) => {
   const tag = req.params.tag;
   const posts = postsByTag[tag] || [];
 
-  res.render("tag", { tag, posts });
+  res.render("tag", { tag, postsByMonth: posts });
 });
 
 app.get("/*path", async (req, res) => {
@@ -57,7 +75,7 @@ app.get("/*path", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.render("index", { posts });
+  res.render("index", { postsByMonth });
 });
 
 app.listen(PORT, () => {

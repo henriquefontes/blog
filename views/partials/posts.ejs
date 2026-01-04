@@ -1,0 +1,24 @@
+<div class="posts-container">
+  <%
+    for(const monthYear in postsByMonth) {
+      const posts = postsByMonth[monthYear];
+      const [month, year] = monthYear.split('-');
+      const date = new Date(year, month);
+      const formattedDate = new Intl.DateTimeFormat('pt-BR', { 
+          year: 'numeric', 
+          month: 'long' 
+      }).format(date);
+  %>
+    <section>
+      <h2><%- formattedDate %></h2>
+      <hr />
+      <ul>
+  <%
+      for (const post of posts) {
+  %>
+        <li><a href="<%-post.path%>"><%-post.title%></a></li>
+    <% } %>
+    </ul>
+  </section>
+  <% } %>
+</div>

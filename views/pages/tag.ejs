@@ -20,11 +20,7 @@
     <%- include("../partials/header") %>
     <main class="wrapper">
       <h1><%- tag %></h1>
-      <hr />
-      <div class="posts-container">
-        <% for(const post of posts) { %>
-        <a href="<%-post.path%>"><%-post.title%> <% } %></a>
-      </div>
+      <%- include("../partials/posts") %>
     </main>
   </body>
 </html>

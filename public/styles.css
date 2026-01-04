@@ -13,6 +13,11 @@
   padding-right: 20px;
 }
 
+ul,
+ol {
+  list-style-position: inside;
+}
+
 hr {
   border: 0;
   height: 1px;
@@ -63,6 +68,10 @@ body > header > .wrapper {
 
 main {
   padding: 50px 20px;
+
+  & > h1:first-of-type {
+    text-align: center;
+  }
 }
 
 main.post-container {
@@ -115,7 +124,15 @@ main.post-container {
   padding: 10px 0;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 40px;
+
+  & hr {
+    margin-bottom: 20px;
+  }
+
+  & li:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
 
 .markdown-body {
