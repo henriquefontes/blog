@@ -1,14 +1,29 @@
 import extractMarkdownFrontMatter from "./extractMarkdownFrontMatter.js";
+/**
+ * Extrai front matter e conteúdo limpo do markdown
+ *
+ * @param {string} markdownContent
+ * @returns {{ frontMatter: object, content: string }}
+ */
 
 export default function extractMarkdownData(markdownContent) {
+  if (typeof markdownContent !== "string") {
+    throw new TypeError("markdownContent deve ser uma string");
+  }
+
   const frontMatter = extractMarkdownFrontMatter(markdownContent);
-  const containsFrontMatter =
-    markdownContent.startsWith("---") &&
-    markdownContent.indexOf("---", 3) != -1;
 
-  const content = containsFrontMatter
-    ? markdownContent.slice(markdownContent.indexOf("---", 3) + 3).trim()
-    : markdownContent.trim();
+  let content = markdownContent;
 
-  return { frontMatter, content };
+  if (markdownContent.startsWith("---")) {
+    const endIndex = markdownContent.indexOf("---", 3);
+    if (endIndex !== -1) {
+      content = markdownContent.slice(endIndex + 3);
+    }
+  }
+
+  return {
+    frontMatter,
+    content: content.trim(),
+  };
 }
