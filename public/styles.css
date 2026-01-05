@@ -71,6 +71,7 @@ main {
 
   & > h1:first-of-type {
     text-align: center;
+    margin-bottom: 30px;
   }
 }
 

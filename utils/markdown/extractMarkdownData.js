@@ -1,6 +1,6 @@
 import extractMarkdownFrontMatter from "./extractMarkdownFrontMatter.js";
 /**
- * Extrai front matter e conteúdo limpo do markdown
+ * Extract both frontmatter object and content of a markdown.
  *
  * @param {string} markdownContent
  * @returns {{ frontMatter: object, content: string }}

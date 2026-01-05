@@ -5,7 +5,9 @@ import extractMarkdownFrontMatter from "../markdown/extractMarkdownFrontMatter.j
 const POSTS_DIR = path.join(process.cwd(), "posts");
 
 /**
- * Lê todos os posts markdown e retorna seus metadados
+ * Return an array containing all posts objects, using files included in posts folder.
+ *
+ * @returns {[{ frontMatter: object, path: string }]} posts
  */
 export default async function getAllPosts() {
   const files = await fs.readdir(POSTS_DIR, {

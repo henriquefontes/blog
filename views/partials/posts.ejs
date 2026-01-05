@@ -1,47 +1,15 @@
-<% 
-  /*
-    o partial é responsável APENAS pela renderização da lista de posts.
-
-    todas as regras (agrupamento por mês, ordenação,
-    formatação de datas e labels) devem ser resolvidas no backend
-    antes de chegar aqui.
-
-    A view deve receber um array no formato:
-    [
-      {
-        label: "janeiro de 2025",
-        iso: "2025-01",
-        posts: [{ title, path }]
-      }
-    ]
-    Esse padrão mantem:
-    separação clara de responsabilidades
-    views simples e previsíveis
-  melhor testabilidade
-    enos acoplamento com regras de domínio
-  */
-%>
-
 <div class="posts-container">
-  <% for (const group of postsByMonth) { %>
-    <section class="posts-group">
-      <h2>
-        <time datetime="<%- group.iso %>">
-          <%- group.label %>
-        </time>
-      </h2>
-
-      <hr />
-
-      <ul>
-        <% for (const post of group.posts) { %>
-          <li>
-            <a href="<%- post.path %>">
-              <%- post.title %>
-            </a>
-          </li>
-        <% } %>
-      </ul>
-    </section>
+  <% for (const group in postsByMonth) { %>
+  <section class="posts-group">
+    <h2><%- group %></h2>
+    <hr />
+    <ul>
+      <% for (const post of postsByMonth[group]) { %>
+      <li>
+        <a href="<%- post.path %>"> <%- post.title %> </a>
+      </li>
+      <% } %>
+    </ul>
+  </section>
   <% } %>
 </div>

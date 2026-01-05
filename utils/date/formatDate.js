@@ -1,15 +1,10 @@
 /**
-* Movi para a pasta "date" pois é importante 
-* manter classes em pastas que deixam explicito 
-* suas funções
-*
-* Formata uma data para pt-BR.
-* Retorna null se a data for inválida.
-*
-* @param {Date | string | number} date
-* @returns {string | null}
-*/
-
+ * Format a date object to pt-BR string format.
+ * Returns null if date is invalid.
+ *
+ * @param {Date | string | number} date
+ * @returns {string | null}
+ */
 export default function formatDate(date) {
   if (!date) return null;
 
@@ -31,4 +26,3 @@ export default function formatDate(date) {
       }).format(date)
     : null;
 }
-

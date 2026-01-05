@@ -1,18 +1,7 @@
 /**
- * Extrai o front matter de um markdown no formato:
- * ---
- * title: Meu post
- * tags: [js, node]
- * date: 2025-01-01
- * ---
- * evitando bug silencioso caso indexOf(":") === -1
- * na pratica o que mudou:
- * não quebra se linha for inválida
- * aceita ":" dentro do valor
- * normaliza arrays
- * data inválida vira null, não bug
- * early returns deixao código mais legível
- * 
+ * Extract frontmatter of a markdown content.
+ * Returning a object containing frontmatter keys and values.
+ *
  * @param {string} markdownContent
  * @returns {object}
  */
