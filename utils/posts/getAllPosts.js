@@ -2,32 +2,39 @@ import fs from "fs/promises";
 import path from "path";
 import extractMarkdownFrontMatter from "../markdown/extractMarkdownFrontMatter.js";
 
+const POSTS_DIR = path.join(process.cwd(), "posts");
+
+/**
+ * Lê todos os posts markdown e retorna seus metadados
+ */
 export default async function getAllPosts() {
-  const POSTS_FOLDER = "/posts";
-  const POSTS_DIR = process.cwd() + POSTS_FOLDER;
-  const postsFiles = await fs.readdir(POSTS_DIR, {
+  const files = await fs.readdir(POSTS_DIR, {
     recursive: true,
     withFileTypes: true,
   });
 
-  const posts = await Promise.all(
-    postsFiles
-      .filter((file) => file.isFile() && file.name.endsWith(".md"))
-      .map(async (file) => {
-        const fileDir = path.join(file.parentPath, file.name);
-        const fileContent = await fs.readFile(fileDir, "utf-8");
-        const frontMatter = extractMarkdownFrontMatter(fileContent);
-
-        return {
-          ...frontMatter,
-          path: fileDir
-            .replaceAll("\\", "/")
-            .replace(POSTS_DIR.replaceAll("\\", "/"), "")
-            .replace(POSTS_FOLDER, "")
-            .replace(".md", ""),
-        };
-      })
+  const markdownFiles = files.filter(
+    (file) => file.isFile() && file.name.endsWith(".md")
   );
+
+  const posts = [];
+
+  for (const file of markdownFiles) {
+    const absolutePath = path.join(file.parentPath, file.name);
+    const content = await fs.readFile(absolutePath, "utf-8");
+
+    const frontMatter = extractMarkdownFrontMatter(content);
+
+    const relativePath = absolutePath
+      .replace(POSTS_DIR, "")
+      .replaceAll("\\", "/")
+      .replace(".md", "");
+
+    posts.push({
+      ...frontMatter,
+      path: relativePath,
+    });
+  }
 
   return posts;
 }
